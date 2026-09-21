@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ada78d927e07fac4c8a51211b296612f, type: 3}
+  m_Name: LevelConfig
+  m_EditorClassIdentifier: Assembly-CSharp::ArmorTheVehicle.Config.LevelConfig
+  levelLength: 200
+  enemyCount: 12
+  minEnemySpacing: 8
+  roadHalfWidth: 4
+  spawnMargin: 15
+  groundTileOverlap: 0.05
+  carMaxHealth: 25
+  carForwardSpeed: 10
+  carStartEaseDuration: 0.5
+  turretRotationSpeed: 180
+  turretMinAngle: -60
+  turretMaxAngle: 60
+  fireRate: 3
+  projectileSpeed: 60
+  projectileDamage: 15
+  projectileLifetime: 5
+  enemyMaxHealth: 30
+  enemyAggroRadius: 20
+  enemyAttackRange: 2
+  enemyMoveSpeed: 4
+  enemyAttackDamage: 5
+  enemyAttackAnimationDuration: 0.5
+  enemyDeathDespawnDelay: 3.2
+  enemyWalkSpeed: 1.8
+  enemyWanderRadius: 3
+  enemyWanderIdleMinTime: 2
+  enemyWanderIdleMaxTime: 5
+  enemyWanderChance: 0.5
+  resultFadeDuration: 0.4
