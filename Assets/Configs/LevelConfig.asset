@@ -21,11 +21,13 @@ MonoBehaviour:
   carMaxHealth: 25
   carForwardSpeed: 10
   carStartEaseDuration: 0.5
+  carWheelRadius: 0.01
+  carHitPulseScale: 1.15
   turretRotationSpeed: 180
   turretMinAngle: -60
   turretMaxAngle: 60
-  fireRate: 3
-  projectileSpeed: 60
+  fireRate: 5
+  projectileSpeed: 70
   projectileDamage: 15
   projectileLifetime: 5
   enemyMaxHealth: 30

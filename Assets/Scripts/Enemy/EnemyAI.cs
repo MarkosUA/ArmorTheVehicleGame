@@ -22,9 +22,10 @@ namespace ArmorTheVehicle.Enemy
         [SerializeField] private GameObject _model;
         [SerializeField] private GameObject _healthBar;
         [SerializeField] private ParticleSystem _deathParticles;
+        [SerializeField] private Renderer[] _flashRenderers;
 
         private Health _health;
-        private CapsuleCollider _collider;
+        private BoxCollider _collider;
         private Transform _target;
         private Collider _targetCollider;
         private IDamageable _targetDamageable;
@@ -34,15 +35,15 @@ namespace ArmorTheVehicle.Enemy
 
         private EnemyAnimatorController _animView;
         private EnemyWanderer _wanderer;
-        private EnemyHitFlash _hitFlash;
+        private HitFlash _hitFlash;
 
         private void Awake()
         {
             _health = GetComponent<Health>();
-            _collider = GetComponent<CapsuleCollider>();
+            _collider = GetComponent<BoxCollider>();
             _animView = new EnemyAnimatorController(_animator);
             _wanderer = new EnemyWanderer(_config);
-            _hitFlash = new EnemyHitFlash(_model != null ? _model.GetComponentInChildren<Renderer>() : null);
+            _hitFlash = HitFlash.FromModel(_model != null ? _model.transform : null, _flashRenderers);
         }
 
         private void OnEnable()

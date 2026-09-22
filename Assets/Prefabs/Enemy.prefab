@@ -875,8 +875,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4719046625447107461}
   - component: {fileID: 1156950984803582910}
-  - component: {fileID: 6758210833757544253}
   - component: {fileID: 4447898494037767271}
+  - component: {fileID: 5069008094162751990}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -915,29 +915,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ArmorTheVehicle.Combat.Health
   _maxHealth: 100
---- !u!136 &6758210833757544253
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5236728891306940684}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.4
-  m_Height: 1.8
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!114 &4447898494037767271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -955,6 +932,29 @@ MonoBehaviour:
   _model: {fileID: 2499773908825033153}
   _healthBar: {fileID: 8816064832439302745}
   _deathParticles: {fileID: 3984185315487131416}
+  _flashRenderers:
+  - {fileID: 8080165668259271630}
+--- !u!65 &5069008094162751990
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5236728891306940684}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1.7835643, z: 1}
+  m_Center: {x: 0, y: 0.88419473, z: 0}
 --- !u!1 &5755760497647126590
 GameObject:
   m_ObjectHideFlags: 0

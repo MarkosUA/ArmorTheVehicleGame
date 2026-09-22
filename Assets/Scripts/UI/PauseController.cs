@@ -71,7 +71,7 @@ namespace ArmorTheVehicle.UI
             Time.timeScale = _isPaused ? 0f : 1f;
             _panel.blocksRaycasts = _isPaused;
             _panel.interactable = _isPaused;
-            _buttonLabel.text = _isPaused ? "▶" : "II";
+            _buttonLabel.text = _isPaused ? ">" : "II";
             _gameState.SetPaused(_isPaused);
         }
 

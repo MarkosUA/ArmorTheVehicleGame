@@ -17,6 +17,8 @@ namespace ArmorTheVehicle.Config
         public float carMaxHealth = 100f;
         public float carForwardSpeed = 10f;
         public float carStartEaseDuration = 0.5f;
+        public float carWheelRadius = 0.35f;
+        public float carHitPulseScale = 1.15f;
 
         [Header("Turret")]
         public float turretRotationSpeed = 180f;
