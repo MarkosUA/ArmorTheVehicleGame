@@ -16,10 +16,12 @@ namespace ArmorTheVehicle.Turret
         [SerializeField] private ProjectilePool _projectilePool;
         [SerializeField] private LineRenderer _laserLine;
 
+        [Header("Layers (defaults to Vehicle + Projectile — no need to change unless the project's layers change)")]
+        [SerializeField] private LayerMask _laserIgnoreMask = (1 << 8) | (1 << 9);
+
         private GameState _gameState;
         private AudioManager _audioManager;
         private float _cooldownRemaining;
-        private int _laserIgnoreMask;
         private const float MaxLaserDistance = 40f;
         private const float MinFireRate = 0.01f; // guards against a zero/near-zero configured fire rate
 
@@ -38,11 +40,6 @@ namespace ArmorTheVehicle.Turret
                 _laserLine.useWorldSpace = true;
                 _laserLine.enabled = false;
             }
-
-            int vehicleLayer = LayerMask.NameToLayer("Vehicle");
-            int projectileLayer = LayerMask.NameToLayer("Projectile");
-            if (vehicleLayer >= 0) _laserIgnoreMask |= (1 << vehicleLayer);
-            if (projectileLayer >= 0) _laserIgnoreMask |= (1 << projectileLayer);
         }
 
         private void Update()

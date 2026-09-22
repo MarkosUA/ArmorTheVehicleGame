@@ -14,14 +14,15 @@ namespace ArmorTheVehicle.Projectile
         private float _damage;
         private float _lifeRemaining;
         private Action<Projectile> _onExpired;
-        private int _vehicleLayer;
+
+        [Header("Layers (defaults to Vehicle — no need to change unless the project's layers change)")]
+        [SerializeField] private LayerMask _vehicleLayer = 1 << 8;
 
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
             _rigidbody.isKinematic = true;
             _trailRenderer = GetComponent<TrailRenderer>();
-            _vehicleLayer = LayerMask.NameToLayer("Vehicle");
         }
 
         public void Launch(Vector3 position, Vector3 direction, float speed, float damage, float lifetime, Action<Projectile> onExpired)
@@ -59,7 +60,7 @@ namespace ArmorTheVehicle.Projectile
         {
             // The car's collider is on the Vehicle layer, so this alone excludes it —
             // no need to also walk the hierarchy looking for a CarController.
-            if (other.gameObject.layer == _vehicleLayer) return;
+            if ((_vehicleLayer.value & (1 << other.gameObject.layer)) != 0) return;
 
             if (other.TryGetComponent(out IDamageable damageable) && damageable.IsAlive)
             {
