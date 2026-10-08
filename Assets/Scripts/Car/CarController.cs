@@ -11,7 +11,7 @@ namespace ArmorTheVehicle.Car
     public sealed class CarController : MonoBehaviour
     {
         [SerializeField] private LevelConfig _config;
-        [SerializeField] private CarInput _input;
+        private CarInput _input;
 
         [Header("Visuals (optional — auto-located by name/search under \"Model\" if left empty)")]
         [SerializeField] private Transform _model;
@@ -31,9 +31,10 @@ namespace ArmorTheVehicle.Car
         private float _speedT;
 
         [Inject]
-        public void Construct(GameState gameState)
+        public void Construct(GameState gameState, CarInput input)
         {
             _gameState = gameState;
+            _input = input;
         }
 
         private void Awake()

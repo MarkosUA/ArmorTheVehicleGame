@@ -8,6 +8,7 @@ using ArmorTheVehicle.Enemy;
 using ArmorTheVehicle.UI;
 using ArmorTheVehicle.CameraRig;
 using ArmorTheVehicle.Audio;
+using ArmorTheVehicle.Projectile;
 
 namespace ArmorTheVehicle.Core
 {
@@ -27,6 +28,8 @@ namespace ArmorTheVehicle.Core
         [SerializeField] private PauseController _pauseController;
         [SerializeField] private ChaseCameraFollow _chaseCameraFollow;
         [SerializeField] private AudioManager _audioManager;
+        [SerializeField] private CarInput _carInput;
+        [SerializeField] private ProjectilePool _projectilePool;
 
         protected override void Configure(IContainerBuilder builder)
         {
@@ -40,6 +43,8 @@ namespace ArmorTheVehicle.Core
             builder.RegisterComponent(_pauseController);
             builder.RegisterComponent(_chaseCameraFollow);
             builder.RegisterComponent(_audioManager);
+            builder.RegisterComponent(_carInput);
+            builder.RegisterComponent(_projectilePool);
         }
     }
 }

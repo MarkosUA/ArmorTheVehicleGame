@@ -28,9 +28,9 @@ namespace ArmorTheVehicle.Enemy
             if (_animator == null) return;
 
             // Also restores normal playback speed — covers the case where a restart
-            // interrupts an enemy mid-attack (SelfDestructAfterAttackAnim's state guard
-            // then skips TriggerDeath entirely), which would otherwise leave this enemy
-            // permanently stuck at the 2x attack speed after being reused.
+            // interrupts an enemy mid-attack (EnemyCombat.Detonate gets cancelled before
+            // TriggerDeath ever runs), which would otherwise leave this enemy permanently
+            // stuck at the sped-up attack playback rate after being reused.
             _animator.speed = 1f;
             _animator.SetBool(AnimIsWalking, false);
             _animator.SetBool(AnimIsRunning, false);

@@ -45,11 +45,13 @@ namespace ArmorTheVehicle.Enemy
             _wanderTarget = new Vector3(targetX, currentPosition.y, targetZ);
         }
 
-        /// Moves transform toward the current wander target. Returns true once the
-        /// destination is reached (and re-rolls the next idle-wait timer internally).
-        public bool TickMove(Transform transform, float deltaTime)
+        /// Moves the Rigidbody toward the current wander target (fixed-timestep, keeping
+        /// the collider's physics-tracked pose in sync with the trigger-detection pass).
+        /// Returns true once the destination is reached (and re-rolls the next idle-wait
+        /// timer internally).
+        public bool TickMove(Rigidbody rigidbody, float deltaTime)
         {
-            Vector3 offset = _wanderTarget - transform.position;
+            Vector3 offset = _wanderTarget - rigidbody.position;
             offset.y = 0f;
 
             if (offset.magnitude <= 0.2f)
@@ -59,8 +61,8 @@ namespace ArmorTheVehicle.Enemy
             }
 
             Vector3 direction = offset.normalized;
-            transform.position += direction * (_config.enemyWalkSpeed * deltaTime);
-            transform.rotation = Quaternion.LookRotation(direction);
+            rigidbody.MovePosition(rigidbody.position + direction * (_config.enemyWalkSpeed * deltaTime));
+            rigidbody.MoveRotation(Quaternion.LookRotation(direction));
             return false;
         }
     }

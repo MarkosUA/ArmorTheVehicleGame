@@ -13,7 +13,6 @@ namespace ArmorTheVehicle.Turret
     {
         [SerializeField] private LevelConfig _config;
         [SerializeField] private Transform _muzzle;
-        [SerializeField] private ProjectilePool _projectilePool;
         [SerializeField] private LineRenderer _laserLine;
 
         [Header("Layers (defaults to Vehicle + Projectile — no need to change unless the project's layers change)")]
@@ -21,15 +20,17 @@ namespace ArmorTheVehicle.Turret
 
         private GameState _gameState;
         private AudioManager _audioManager;
+        private ProjectilePool _projectilePool;
         private float _cooldownRemaining;
         private const float MaxLaserDistance = 40f;
         private const float MinFireRate = 0.01f; // guards against a zero/near-zero configured fire rate
 
         [Inject]
-        public void Construct(GameState gameState, AudioManager audioManager)
+        public void Construct(GameState gameState, AudioManager audioManager, ProjectilePool projectilePool)
         {
             _gameState = gameState;
             _audioManager = audioManager;
+            _projectilePool = projectilePool;
         }
 
         private void Awake()

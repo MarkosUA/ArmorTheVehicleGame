@@ -611,6 +611,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b21de0fb54bf714438ce13fdef3d363e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ArmorTheVehicle.Car.CarController
+--- !u!114 &6182947350918264701 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8760193899938415925, guid: e5c2d6f3a620710418b0f18c6920c996, type: 3}
+  m_PrefabInstance: {fileID: 7728672635108542197}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb7c9e03fa979a43b2d25e805d68a17, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::ArmorTheVehicle.Car.CarInput
 --- !u!114 &151876111578923622 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2245062035125225949, guid: 758e73b90db8ee347b0af53802a32c98, type: 3}
@@ -1069,8 +1080,16 @@ PrefabInstance:
       objectReference: {fileID: 330585548}
     - target: {fileID: 2921377877510551571, guid: e77744a1e2772c240adb23a3f3777a20, type: 3}
       propertyPath: _turretAimController
-      value: 
+      value:
       objectReference: {fileID: 8461937025584921733}
+    - target: {fileID: 2921377877510551571, guid: e77744a1e2772c240adb23a3f3777a20, type: 3}
+      propertyPath: _carInput
+      value:
+      objectReference: {fileID: 6182947350918264701}
+    - target: {fileID: 2921377877510551571, guid: e77744a1e2772c240adb23a3f3777a20, type: 3}
+      propertyPath: _projectilePool
+      value:
+      objectReference: {fileID: 1015477671}
     - target: {fileID: 5437481341251508629, guid: e77744a1e2772c240adb23a3f3777a20, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

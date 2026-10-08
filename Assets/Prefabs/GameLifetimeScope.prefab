@@ -57,3 +57,5 @@ MonoBehaviour:
   _pauseController: {fileID: 0}
   _chaseCameraFollow: {fileID: 0}
   _audioManager: {fileID: 0}
+  _carInput: {fileID: 0}
+  _projectilePool: {fileID: 0}

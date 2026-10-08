@@ -59,9 +59,12 @@ namespace ArmorTheVehicle.Core
         /// Set by whatever UI currently owns the pause menu (see PauseController) — a
         /// separate axis from IsRunning, since the run is still "in progress" while paused,
         /// just with input/behavior that should react to it temporarily suppressed.
+        /// Time.timeScale is owned here (not by PauseController) so there is a single
+        /// source of truth for "what does pausing actually do" — see RequestRestartAsync.
         public void SetPaused(bool paused)
         {
             IsPaused = paused;
+            Time.timeScale = paused ? 0f : 1f;
         }
 
         private bool _isRestarting;
@@ -74,6 +77,12 @@ namespace ArmorTheVehicle.Core
         public async void RequestRestartAsync()
         {
             if (_isRestarting) return;
+
+            // Unconditionally clear pause first: the delay below runs on scaled time, so if
+            // this is reached while paused (e.g. the win/lose overlay's Restart, which isn't
+            // gated by the pause panel) and Time.timeScale were left at 0, the wait below
+            // would never elapse and every future restart would silently no-op forever.
+            SetPaused(false);
 
             _isRestarting = true;
             await Awaitable.WaitForSecondsAsync(_config.resultFadeDuration);

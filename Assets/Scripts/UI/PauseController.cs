@@ -7,9 +7,9 @@ using ArmorTheVehicle.Audio;
 
 namespace ArmorTheVehicle.UI
 {
-    /// Pause button: freezes/resumes via Time.timeScale and fades in a panel with
-    /// Restart/Exit. The fade itself runs on unscaled time so it still animates at
-    /// timeScale 0, and UI clicks keep working at timeScale 0 regardless.
+    /// Pause button: toggles GameState.IsPaused (which owns the Time.timeScale freeze/
+    /// resume) and fades in a panel with Restart/Exit. The fade itself runs on unscaled
+    /// time so it still animates at timeScale 0, and UI clicks keep working regardless.
     public sealed class PauseController : MonoBehaviour
     {
         [SerializeField] private Button _pauseButton;
@@ -22,7 +22,6 @@ namespace ArmorTheVehicle.UI
         private GameState _gameState;
         private AudioManager _audioManager;
         private CanvasGroupFader _fader;
-        private bool _isPaused;
 
         [Inject]
         public void Construct(GameState gameState, AudioManager audioManager)
@@ -60,19 +59,18 @@ namespace ArmorTheVehicle.UI
 
         private void Update()
         {
-            _fader.Tick(_isPaused);
+            _fader.Tick(_gameState.IsPaused);
         }
 
         private void TogglePause()
         {
             _audioManager?.PlayButtonClick();
 
-            _isPaused = !_isPaused;
-            Time.timeScale = _isPaused ? 0f : 1f;
-            _panel.blocksRaycasts = _isPaused;
-            _panel.interactable = _isPaused;
-            _buttonLabel.text = _isPaused ? ">" : "II";
-            _gameState.SetPaused(_isPaused);
+            bool isPaused = !_gameState.IsPaused;
+            _gameState.SetPaused(isPaused);
+            _panel.blocksRaycasts = isPaused;
+            _panel.interactable = isPaused;
+            _buttonLabel.text = isPaused ? ">" : "II";
         }
 
         private void HandleRestart()

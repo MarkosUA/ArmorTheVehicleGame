@@ -10,10 +10,10 @@ namespace ArmorTheVehicle.Turret
     public sealed class TurretAimController : MonoBehaviour
     {
         [SerializeField] private LevelConfig _config;
-        [SerializeField] private CarInput _input;
         [SerializeField] private Transform _pivot;
         [SerializeField] private Transform _muzzle;
 
+        private CarInput _input;
         private GameState _gameState;
         private float _currentLocalAngle;
         private float _currentPitch;
@@ -26,9 +26,10 @@ namespace ArmorTheVehicle.Turret
         private const float MinScreenWidth = 1f; // avoids a divide-by-zero when normalizing touch X against screen width
 
         [Inject]
-        public void Construct(GameState gameState)
+        public void Construct(GameState gameState, CarInput input)
         {
             _gameState = gameState;
+            _input = input;
         }
 
         private void Awake()
@@ -52,10 +53,12 @@ namespace ArmorTheVehicle.Turret
         // Horizontal aim, driven directly by player input.
         private void UpdateYaw()
         {
+            // Hold the last aimed angle instead of snapping back to dead-ahead the instant
+            // the player's finger leaves the screen.
             float targetAngle = _input.IsAiming
                 ? Mathf.Lerp(_config.turretMinAngle, _config.turretMaxAngle,
                     Mathf.Clamp01(_input.AimPoint.x / Mathf.Max(MinScreenWidth, Screen.width)))
-                : 0f;
+                : _currentLocalAngle;
 
             _currentLocalAngle = Mathf.MoveTowardsAngle(
                 _currentLocalAngle, targetAngle, _config.turretRotationSpeed * Time.deltaTime);
